@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="443.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="phoenix.Controller">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About Phoenix" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab closable="false" style="-fx-background-radius: -50;" text="Backup">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="543.0">
+                                    <children>
+                                        <ProgressBar fx:id="progressBar" layoutX="10.0" layoutY="361.0" prefHeight="18.0" prefWidth="501.0" progress="0.0" style="-fx-background-radius: -50;">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </ProgressBar>
+                                        <TextField fx:id="dbPathField1" layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="300.0" promptText="File path" style="-fx-background-radius: -50;" text="C:\databases\MEDISYSTEM.FDB" />
+                                        <Button fx:id="selectDBButton1" layoutX="390.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectDBFile" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: -50;" text="Select Database" />
+                                        <Label layoutX="20.0" layoutY="14.0" style="-fx-background-radius: -50;" text="Database" />
+                                        <Label layoutX="46.0" layoutY="49.0" style="-fx-background-radius: -50;" text="User" />
+                                        <Label layoutX="20.0" layoutY="84.0" style="-fx-background-radius: -50;" text="Password" />
+                                        <TextField fx:id="userField" layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-radius: -50;" text="SYSDBA" />
+                                        <PasswordField fx:id="pwdField" layoutX="80.0" layoutY="80.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-radius: -50;" text="masterkey" />
+                                        <Button fx:id="resetButton" layoutX="240.0" layoutY="63.0" mnemonicParsing="false" onAction="#resetDefaults" style="-fx-background-radius: -50;" text="Reset Defaults" />
+                                        <Label layoutX="10.0" layoutY="119.0" style="-fx-background-radius: -50;" text="Destination" />
+                                        <TextField fx:id="dirPathField1" layoutX="80.0" layoutY="115.0" prefHeight="25.0" prefWidth="300.0" promptText="Directory path" style="-fx-background-radius: -50;" text="C:\databases\backups\" />
+                                        <Button fx:id="selectDirButton1" layoutX="390.0" layoutY="115.0" mnemonicParsing="false" onAction="#selectTargetDir" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: -50;" text="Select Directory" />
+                                        <TitledPane layoutX="10.0" layoutY="150.0" style="-fx-background-radius: -50;" text="Options">
+                                            <content>
+                                                <VBox prefHeight="43.0" prefWidth="498.0">
+                                                    <children>
+                                                        <CheckBox fx:id="bkpOpt1" mnemonicParsing="false" selected="true" style="-fx-background-radius: -50;" text="Compress to GZip">
+                                                            <tooltip>
+                                                                <Tooltip text="Backup database and compress it to a GZip file" wrapText="true" />
+                                                            </tooltip>
+                                                        </CheckBox>
+                                                        <CheckBox fx:id="bkpOpt2" mnemonicParsing="false" selected="true" style="-fx-background-radius: -50;" text="Convert external tables to internal ones">
+                                                            <tooltip>
+                                                                <Tooltip text="This switch causes any tables, defined as external, to be backed up as if they were normal (non-external) tables. When this dump file is used to restore a database, the tables that were external in the original database will no longer be external. " wrapText="true" />
+                                                            </tooltip>
+                                                        </CheckBox>
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </TitledPane>
+                                        <Button fx:id="backupButton" layoutX="206.0" layoutY="326.0" mnemonicParsing="false" onAction="#backupNow" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: -50;" text="Backup Now" textFill="#0083c9" />
+                                        <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="361.0" prefHeight="17.0" prefWidth="145.0" style="-fx-background-radius: -50;" textAlignment="CENTER" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="183.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" style="-fx-background-radius: -50;" text="Restore">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="543.0">
+                                    <children>
+                                        <ProgressBar layoutX="10.0" layoutY="361.0" prefHeight="18.0" prefWidth="501.0" progress="0.0" style="-fx-background-radius: -50;">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </ProgressBar>
+                                        <TextField fx:id="bkpPathField" layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="300.0" promptText="File path" style="-fx-background-radius: -50;" />
+                                        <Button fx:id="selectBKPButton" layoutX="391.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: -50;" text="Select Backup" />
+                                        <Label layoutX="10.0" layoutY="14.0" style="-fx-background-radius: -50;" text="Backup File" />
+                                        <Label layoutX="10.0" layoutY="49.0" style="-fx-background-radius: -50;" text="Destination" />
+                                        <TextField fx:id="dirPathField2" layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="300.0" promptText="Directory path" style="-fx-background-radius: -50;" />
+                                        <Button fx:id="selectDirButton2" layoutX="391.0" layoutY="45.0" mnemonicParsing="false" onAction="#selectTargetDir" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: -50;" text="Select Directory" />
+                                        <TitledPane expanded="false" layoutX="11.0" layoutY="80.0" style="-fx-background-radius: -50;" text="Options">
+                                            <content>
+                                                <VBox prefHeight="7.0" prefWidth="498.0" />
+                                            </content>
+                                        </TitledPane>
+                                        <Button fx:id="restoreButton" layoutX="206.0" layoutY="326.0" mnemonicParsing="false" onAction="#restoreNow" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: -50;" text="Restore Now" textFill="#0083c9" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab disable="true" style="-fx-background-radius: -50;" text="Clone">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="543.0">
+                                    <children>
+                                        <ProgressBar layoutX="10.0" layoutY="361.0" prefHeight="18.0" prefWidth="501.0" progress="0.0" style="-fx-background-radius: -50;">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </ProgressBar>
+                                        <TextField fx:id="dbPathField2" layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="300.0" promptText="File path" style="-fx-background-radius: -50;" />
+                                        <Button fx:id="selectDBButton2" layoutX="390.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectDBFile" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: -50;" text="Select Database" />
+                                        <Label layoutX="20.0" layoutY="14.0" style="-fx-background-radius: -50;" text="Database" />
+                                        <Label layoutX="10.0" layoutY="49.0" style="-fx-background-radius: -50;" text="Destination" />
+                                        <TextField fx:id="dirPathField3" layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="300.0" promptText="Directory path" style="-fx-background-radius: -50;" />
+                                        <Button fx:id="selectDirButton3" layoutX="390.0" layoutY="45.0" mnemonicParsing="false" onAction="#selectTargetDir" prefHeight="25.0" prefWidth="120.0" style="-fx-background-radius: -50;" text="Select Directory" />
+                                        <TitledPane layoutX="10.0" layoutY="80.0" style="-fx-background-radius: -50;" text="Options">
+                                            <content>
+                                                <VBox prefHeight="28.0" prefWidth="498.0">
+                                                    <children>
+                                                        <CheckBox fx:id="clnOpt1" mnemonicParsing="false" text="Metadata only" />
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </TitledPane>
+                                        <Button fx:id="cloneButton" layoutX="206.0" layoutY="326.0" mnemonicParsing="false" onAction="#cloneNow" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: -50;" text="Clone Now" textFill="#0083c9" />
+                                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="183.0" layoutY="361.0" prefHeight="17.0" prefWidth="145.0" style="-fx-background-radius: -50;" textAlignment="CENTER" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

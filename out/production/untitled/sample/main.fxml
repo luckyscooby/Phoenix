@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="443.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Program">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Safe Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About Phoenix" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab text="Backup">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="543.0">
+                                    <children>
+                                        <ProgressBar layoutX="10.0" layoutY="361.0" prefHeight="18.0" prefWidth="501.0" progress="0.0">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </ProgressBar>
+                                        <TextField fx:id="dbPathField1" layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="300.0" promptText="File path" />
+                                        <Button fx:id="selectDBButton1" layoutX="391.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectDBFile" prefHeight="25.0" prefWidth="120.0" text="Select Database" />
+                                        <Label layoutX="20.0" layoutY="14.0" text="Database" />
+                                        <Label layoutX="46.0" layoutY="49.0" text="User" />
+                                        <Label layoutX="20.0" layoutY="84.0" text="Password" />
+                                        <TextField layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="150.0" text="SYSDBA" />
+                                        <PasswordField layoutX="80.0" layoutY="80.0" prefHeight="25.0" prefWidth="150.0" text="masterkey" />
+                                        <Label layoutX="10.0" layoutY="119.0" text="Destination" />
+                                        <TextField fx:id="tgtPathField1" layoutX="80.0" layoutY="115.0" prefHeight="25.0" prefWidth="300.0" promptText="Directory path" />
+                                        <Button layoutX="391.0" layoutY="115.0" mnemonicParsing="false" onAction="#selectTargetDir" prefHeight="25.0" prefWidth="120.0" text="Select Directory" />
+                                        <TitledPane layoutX="11.0" layoutY="153.0" text="Options">
+                                            <content>
+                                                <VBox prefHeight="64.0" prefWidth="498.0">
+                                                    <children>
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Compress to GZip">
+                                                            <tooltip>
+                                                                <Tooltip text="Backup database and compress it to a GZip file" wrapText="true" />
+                                                            </tooltip>
+                                                        </CheckBox>
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Convert external tables to internal ones">
+                                                            <tooltip>
+                                                                <Tooltip text="This switch causes any tables, defined as external, to be backed up as if they were normal (non-external) tables. When this dump file is used to restore a database, the tables that were external in the original database will no longer be external. " wrapText="true" />
+                                                            </tooltip>
+                                                        </CheckBox>
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Show log when done" />
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Enable &quot;On The Fly&quot; (do not shutdown/lock database)" />
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </TitledPane>
+                                        <Button layoutX="206.0" layoutY="326.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Backup Now" textFill="#0083c9" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Restore">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="543.0">
+                                    <children>
+                                        <ProgressBar layoutX="10.0" layoutY="361.0" prefHeight="18.0" prefWidth="501.0" progress="0.0">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </ProgressBar>
+                                        <TextField layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="300.0" promptText="File path" />
+                                        <Button layoutX="391.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="120.0" text="Select Backup" />
+                                        <Label layoutX="10.0" layoutY="14.0" text="Backup File" />
+                                        <Label layoutX="10.0" layoutY="49.0" text="Destination" />
+                                        <TextField fx:id="tgtPathField2" layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="300.0" promptText="Directory path" />
+                                        <Button layoutX="391.0" layoutY="45.0" mnemonicParsing="false" onAction="#selectTargetDir" prefHeight="25.0" prefWidth="120.0" text="Select Directory" />
+                                        <TitledPane layoutX="11.0" layoutY="80.0" text="Options">
+                                            <content>
+                                                <VBox prefHeight="7.0" prefWidth="498.0">
+                                                    <children>
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Show log when done" />
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </TitledPane>
+                                        <Button layoutX="206.0" layoutY="326.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Restore Now" textFill="#0083c9" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Clone">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="346.0" prefWidth="543.0">
+                                    <children>
+                                        <ProgressBar layoutX="10.0" layoutY="361.0" prefHeight="18.0" prefWidth="501.0" progress="0.0">
+                                            <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                            </cursor>
+                                        </ProgressBar>
+                                        <TextField fx:id="dbPathField2" layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="300.0" promptText="File path" />
+                                        <Button fx:id="selectDBButton2" layoutX="391.0" layoutY="10.0" mnemonicParsing="false" onAction="#selectDBFile" prefHeight="25.0" prefWidth="120.0" text="Select Database" />
+                                        <Label layoutX="20.0" layoutY="14.0" text="Database" />
+                                        <Label layoutX="10.0" layoutY="49.0" text="Destination" />
+                                        <TextField fx:id="tgtPathField3" layoutX="80.0" layoutY="45.0" prefHeight="25.0" prefWidth="300.0" promptText="Directory path" />
+                                        <Button layoutX="391.0" layoutY="45.0" mnemonicParsing="false" onAction="#selectTargetDir" prefHeight="25.0" prefWidth="120.0" text="Select Directory" />
+                                        <TitledPane layoutX="11.0" layoutY="80.0" text="Options">
+                                            <content>
+                                                <VBox prefHeight="28.0" prefWidth="498.0">
+                                                    <children>
+                                                        <CheckBox mnemonicParsing="false" text="Metadata only" />
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Show log when done" />
+                                                        <CheckBox mnemonicParsing="false" selected="true" text="Enable &quot;On The Fly&quot; (do not shutdown/lock database)" />
+                                                    </children>
+                                                </VBox>
+                                            </content>
+                                        </TitledPane>
+                                        <Button layoutX="206.0" layoutY="326.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Clone Now" textFill="#0083c9" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
