@@ -10,3 +10,6 @@ Firebird's gbak frontend solution
 
 - **Reasoning**<br>
 I was developing this utility while I worked for an IT company providing support for their proprietary softwares which used Firebird as the database; as we needed to maintain the DBs I came up with this idea to avoid us retyping, copying and pasting commands, thus accelerating a bit our work, however I only had the time to partially develop the UI as I quit working for them. It would use gbak's own command line executable as backend and <span style="color:#991B1B">*JavaFX*</span> as frontend.
+
+- **Screenshot**<br>
+![UI](https://i.ibb.co/XSTxJwq/Capturar.png "UI")
